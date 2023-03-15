@@ -1,0 +1,101 @@
+﻿@using Senac_WebCRUDCosmosDB.Models.GremilinSerializationJSON;
+@using Senac_WebCRUDCosmosDB.Models.GremilinSerializationJSON.Report;
+@{
+    ViewData["Title"] = "Relatório sobre a rede";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<p></p>
+<h1 class="display-4">Top 5 são os mais <b>conhecidos</b></h1>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Primeiro Nome</th>
+        <th>Ultimo Nome</th>
+        <th>Age</th>
+        <th>Quantos o conhecem</th>
+    </tr>
+    @for (int i = 0; i < 6; i++)
+    {
+        CJSONPersonNumberOfKnown objPerson = (ViewBag.Known as List<CJSONPersonNumberOfKnown>)[i];
+        <tr>
+            <td>@Html.ActionLink(objPerson.Id, "Item", "Home", new { Id = objPerson.Id})</td>
+            <td>@objPerson.Email</td>
+            <td>@objPerson.FirstName</td>
+            <td>@objPerson.LastName</td>
+            <td>@objPerson.Age</td>
+            <td>@Html.ActionLink(objPerson.NumberOfKnown.ToString(), "List", "Association", new { Id = objPerson.Id})</td>
+        </tr>
+    }
+</table>
+
+<p></p>
+<h1 class="display-4">Top 5 <b>conhecem</b> mais pessoas</h1>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Primeiro Nome</th>
+        <th>Ultimo Nome</th>
+        <th>Age</th>
+        <th>Quantos conhecem</th>
+    </tr>
+    @for (int i = 0; i < 6; i++)
+    {
+        CJSONPersonNumberOfKnows objPerson = (ViewBag.KnowsMore as List<CJSONPersonNumberOfKnows>)[i];
+        <tr>
+            <td>@Html.ActionLink(objPerson.Id, "Item", "Home", new { Id = objPerson.Id})</td>
+            <td>@objPerson.Email</td>
+            <td>@objPerson.FirstName</td>
+            <td>@objPerson.LastName</td>
+            <td>@objPerson.Age</td>
+            <td>@Html.ActionLink(objPerson.NumberOfKnows.ToString(), "List", "Association", new { Id = objPerson.Id})</td>
+        </tr>
+    }
+</table>
+
+<p></p>
+<h1 class="display-4">Não conhecem <b>ninguem</b></h1>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Primeiro Nome</th>
+        <th>Ultimo Nome</th>
+        <th>Age</th>
+    </tr>
+    @foreach (CJSONPerson objPerson in ViewBag.KnowsNoOne)
+    {
+    <tr>
+        <td>@Html.ActionLink(objPerson.Id, "Item", "Home", new { Id = objPerson.Id})</td>
+        <td>@objPerson.Email</td>
+        <td>@objPerson.FirstName</td>
+        <td>@objPerson.LastName</td>
+        <td>@objPerson.Age</td>
+    </tr>
+    }
+</table>
+
+<p></p>
+<h1 class="display-4">Não conhecem <b>ninguem</b> e nem é <b>conhecido</b> por ninguém</h1>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Primeiro Nome</th>
+        <th>Ultimo Nome</th>
+        <th>Age</th>
+    </tr>
+    @foreach (CJSONPerson objPerson in ViewBag.KnowsNoOneNeitherNoOneKnowsHim)
+    {
+        <tr>
+            <td>@Html.ActionLink(objPerson.Id, "Item", "Home", new { Id = objPerson.Id})</td>
+            <td>@objPerson.Email</td>
+            <td>@objPerson.FirstName</td>
+            <td>@objPerson.LastName</td>
+            <td>@objPerson.Age</td>
+        </tr>
+    }
+</table>
+
+

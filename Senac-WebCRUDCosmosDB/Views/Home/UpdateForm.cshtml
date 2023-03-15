@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Atualizar os dados de uma pessoa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="display-4">Atualizar Pessoa</h1>
+<p></p>
+<form method="post" asp-action="Update" asp-controller="Home">
+    <div class="form-group">
+        <label>Email:</label>
+        <input class="form-control" type="Text" name="Email" value="@Model.Email" disabled />
+        <input class="form-control" type="hidden" name="Email" value="@Model.Email" />
+        <br />
+    </div>
+    <div class="form-group">
+        <label>Primeiro Nome:</label>
+        <Input class="form-control" type="Text" name="FirstName" value="@Model.FirstName" />
+        <br />
+    </div>
+    <div class="form-group">
+        <label>Ultimo Nome:</label>
+        <Input class="form-control" type="Text" name="LastName" value="@Model.LastName" />
+        <br />
+    </div>
+    <div class="form-group">
+        <label>Idade:</label>
+        <Input class="form-control" type="Text" name="Age" value="@Model.Age" />
+        <br />
+    </div>
+    <input type="submit" value="Atualizar" />
+</form>
+<br />
+<p>
+    @Html.ActionLink("Voltar", "Index")
+</p>

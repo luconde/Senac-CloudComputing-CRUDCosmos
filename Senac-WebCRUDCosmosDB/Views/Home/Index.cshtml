@@ -1,0 +1,33 @@
+﻿@using Senac_WebCRUDCosmosDB.Models.GremilinSerializationJSON;
+@{
+    ViewData["Title"] = "Lista de pessoas";
+}
+
+<p>@Html.ActionLink("Criar nova pessoa", "Create")</p>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Age</th>
+        <th>Atualizar</th>
+        <th>Excluir</th>
+        <th>Associar</th>
+    </tr>
+    @foreach (CJSONPerson objPerson in Model)
+    {
+    <tr>
+            <td>@Html.ActionLink(objPerson.Id,"Item", new { Id = objPerson.Id})</td>
+            <td>@objPerson.Email</td>
+            <td>@objPerson.FirstName</td>
+            <td>@objPerson.LastName</td>
+            <td>@objPerson.Age</td>
+            <td>@Html.ActionLink("Atualizar","Update", new { Id = @objPerson.Id})</td>
+            <td>@Html.ActionLink("Excluir", "Delete", new { Id = @objPerson.Id}, new { onclick = "return confirm('Tem certeza que deseja apagar ?')"})</td>
+            <td>@Html.ActionLink("Associar", "List", "Association", new { Id = objPerson.Id})</td>
+    </tr>
+    }
+
+</table>

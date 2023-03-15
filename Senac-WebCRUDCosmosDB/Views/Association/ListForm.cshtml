@@ -1,0 +1,78 @@
+﻿@using Senac_WebCRUDCosmosDB.Models.GremilinSerializationJSON;
+@using Senac_WebCRUDCosmosDB.Models.GremilinSerializationJSON.Association;
+@{
+    ViewData["Title"] = "Faça a associação entre as pessoas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1 class="display-4">Marque as pessoas que <b>@ViewBag.Person.FirstName</b> (@ViewBag.Person.Email) conhece:</h1>
+<p></p>
+<form method="post" asp-action="Process" asp-controller="Association">
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Id</th>
+            <th>Conhece</th>
+            <th>Primeiro Nome</th>
+            <th>Ultimo Nome</th>
+            <th>Email</th>
+        </tr>
+    @foreach (CJSONPersonAssociation objPerson in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(objPerson.Id, "Item", "Home", new { Id = objPerson.Id})
+            </td>
+            <td>
+                @if((bool)objPerson.Conhece)
+                {
+                    <input type="checkbox" name="ids" checked value="@objPerson.Email">
+                }
+                else
+                { 
+                    <input type="checkbox" name="ids" value="@objPerson.Email">
+                }
+            </td>
+            <td>
+                @objPerson.FirstName
+            </td>
+            <td>
+                @objPerson.LastName
+            </td>
+            <td>
+                @objPerson.Email
+            </td>       
+        </tr>
+    }
+    </table>
+    <input type="hidden" name="Id" value="@ViewBag.Id" />
+    <br />
+    <input type="submit" value="Process" />
+</form>
+<p></p>
+<h1 class="display-4">Veja as pessoas que conhecem <b>@ViewBag.Person.FirstName</b> (@ViewBag.Person.Email)</h1>
+<table border="1" cellpadding="5">
+        <tr>
+            <th>Id</th>
+            <th>Primeiro Nome</th>
+            <th>Ultimo Nome</th>
+            <th>Email</th>
+        </tr>
+    @foreach (CJSONPersonAssociation objPerson in Model)
+    {
+        @if((bool)objPerson.Conhecido)
+        {
+            <tr>
+                    <td>@Html.ActionLink(objPerson.Id, "Item", "Home", new { Id = objPerson.Id})</td>
+                    <td>@objPerson.FirstName</td>
+                    <td>@objPerson.LastName</td>
+                    <td>@objPerson.Email</td>
+            </tr>                
+        }
+    }
+</table>
+
+
+<br />
+<p>
+    @Html.ActionLink("Voltar", "Index", "Home")
+</p>
+
