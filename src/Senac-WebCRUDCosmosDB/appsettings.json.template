@@ -1,0 +1,20 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",  
+  "CosmosDBConnectionString": {
+    "hostname": "<Url do Serviço CosmosDB>",
+    "port": "443",
+    "enablessl": "true",
+    "username": "<Usuario fornecido pelo Serviço CosmosDB>",
+    "password": "<Chave do Serviço CosmosDB>"
+  },
+  "Deploy": {
+    "Target": "NGINX",
+    "UsePathBase": "<Em Caso de NGINX, forneça o diretório de funcionamento>"
+  }
+}

@@ -13,4 +13,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\arquivo\force01.csv" />
+  </ItemGroup>
+
 </Project>
