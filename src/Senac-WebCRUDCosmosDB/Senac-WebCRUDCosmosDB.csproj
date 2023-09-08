@@ -6,6 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Senac_WebCRUDCosmosDB</RootNamespace>
 	<SatelliteResourceLanguages>none</SatelliteResourceLanguages>
+	  <Authors>Luciano Condé</Authors>
+	  <Copyright>© 2022 - Luciano Condé</Copyright>
+	  <Version>1.0.15</Version>
+	  <Product>Demo de NoSQL com Azure CosmosDB e Gremilin</Product>	  
   </PropertyGroup>
 
   <ItemGroup>
